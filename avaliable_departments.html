@@ -1,0 +1,120 @@
+{% load static %}
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Available Departments</title>
+  <link rel="stylesheet" href="../static/CSS/available.css">
+  <link rel="icon" type="image/x-icon" href="../static/pic/fcair-logo.png">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="{% static 'JavaS/available.js' %}"></script>
+</head>
+
+<body class="container">
+  <div class="flexBox" id="flexBox">
+    <a href="{% url 'index2' %}" class="home">
+      <img src="../static/pic/logo.png">
+      <h1> Student Affairs</h1>
+    </a>
+    <nav class="Links">
+            <a href="{% url 'addStudent' %}">Add Student</a>
+        <a href="{% url 'edit_page_view' %}">Update</a>
+        <a href="{% url 'ActiveStudents' %}">Active Students</a>
+      <a href="{% url 'assign-department' %}">Assign Department</a>
+      <a href="{% url 'search-students' %}">Search</a>
+      <a href="{% url 'logout' %}">LogOut</a>
+    </nav>
+  </div>
+  <h1 class="header">
+    <span class="animated-header">Assign<br/>Department</span>
+    <div class="info">
+      <form class="search" action="{% url 'search-student-id' %}" method="post">
+        {% csrf_token %}
+        <input type="text" id="search" name="search" placeholder="Search by ID"/>
+        <button type="submit" id="submit-button">
+          <img src="../static/pic/search-interface-symbol.png" alt="Search">
+        </button>
+      </form>
+
+
+      <table id="results">
+        <thead>
+          <tr>
+              <th>ID</th>
+              <th>Name</th>
+              <th>GPA</th>
+              <th>Level&nbsp;</th>
+              <th>Mobile Number</th>
+              <th>Department</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr id="data-row">
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td id="submitted"></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </h1>
+
+  <div class="dropdown">
+    <form class="choose" action="{% url 'assign-to-student' %}" method="post">
+      <div class="selected">
+        Choose department
+      </div>
+
+      <div class="options">
+        <div class="option">
+
+
+          <input type="radio" class="radio" id="computerScience" name="dept" value="Computer Science"/>
+          <label for="computerScience">Computer Science</label>
+          <img class="icon" src="../static/pic/computer-science.png">
+        </div>
+
+        <div class="option">
+          <input type="radio" class="radio" id="infoTech" name="dept" value="Information Technology"/>
+          <label for="infoTech">
+            Information Technology
+          </label>
+          <img class="icon" src="../static/pic/it-systems.png">
+        </div>
+
+        <div class="option">
+          <input type="radio" class="radio" id="infoSys" name="dept" value="Information Systems"/>
+          <label for="infoSys">
+            Information Systems
+          </label>
+          <img class="icon" src="../static/pic/information-system.png">
+        </div>
+
+        <div class="option">
+          <input type="radio" class="radio" id="descSupport" name="dept" value="Decision Support"/>
+          <label for="descSupport">
+            Decision Support
+          </label>
+          <img class="icon" src="../static/pic/systems.png">
+        </div>
+
+        <div class="option">
+          <input type="radio" class="radio" id="artificialIntel" name="dept" value="Artificial Intelligence"/>
+          <label for="artificialIntel">
+            Artificial Intelligence
+          </label>
+          <img class="icon" src="../static/pic/artificial-intelligence.png">
+        </div>
+      </div>
+
+      <button class="submit-button" type="submit">Submit</button>
+    </form>
+  </div>
+
+  <footer>
+    <p>&copy; 2023 Student Affairs, FCAI</p>
+  </footer>
+
+</body>

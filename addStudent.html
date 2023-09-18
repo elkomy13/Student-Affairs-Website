@@ -1,0 +1,96 @@
+{% load static %}
+<html>
+<head>
+    <title>add student</title>
+    <link rel=stylesheet href="{% static 'CSS/AddStudent.CSS' %}">
+  <link rel="icon" type="image/x-icon" href="../static/pic/fcair-logo.png">
+</head>
+<body>
+    <div class="flexBox" id="flexBox">
+        <a href="{% url 'index2' %}" class="home">
+            <img src="../static/pic/logo.png">
+            <h1> Student Affairs</h1>
+        </a>
+       <nav class="Links">
+            <a href="{% url 'addStudent' %}">Add Student</a>
+        <a href="{% url 'edit_page_view' %}">Update</a>
+        <a href="{% url 'ActiveStudents' %}">Active Students</a>
+      <a href="{% url 'assign-department' %}">Assign Department</a>
+      <a href="{% url 'search-students' %}">Search</a>
+      <a href="{% url 'logout' %}">LogOut</a>
+
+      </nav>
+      </div>
+                <style>
+        .message{
+            color: red;
+            font-size: 15px;
+            padding: 10px;
+            text-align: center;
+            margin-top: 10px;
+            background-color:white ;
+            border-radius: 10px;
+
+                 }
+                </style>
+
+    <form action="{% url 'addStudent' %}" method="post" class="form">
+    {% csrf_token %}
+         {% for message in messages %}
+         <p class ="message">{{message}}</p>
+        {% endfor %}
+    <div class = "add" >
+        <p>Please enter student info below </p>
+        <label for="name"><b>Name</b></label>
+         <input type="text" placeholder=" Student Name " name="name" id="name" required
+               minlength="4" maxlength="16" size="20" >
+        <label for="gender"><b>Gender</b></label>
+        <input list="Gender" id="gender" name="gender" placeholder="Please choose " required>
+        <datalist id = "Gender" >
+        <option value="Male">
+        <option value="Female">
+        </datalist>
+        <label for="id"><b>ID</b></label>
+        <input type="tel" id="id" placeholder=" ID " name="id" required/>
+        <label for="mail"><b>email</b></label>
+        <input type="email"  placeholder="name@gmail.com" name="mail" id="mail" required/>
+        <label for="tele"><b>phone no.</b></label>
+        <input type="tel" placeholder="no.=01234567891" required name="tele" id="tele" />
+        <label for="date"><b>Date</b></label>
+        <input type="date" id="date" name ="date" required/>
+
+        <label for="level"><b>Level</b></label>
+        <input list="level"  placeholder="1-4" name="lvl" ID="lvl" required>
+
+        <datalist id = "level">
+        <option value="1">
+        <option value="2">
+        <option value="3">
+        <option value="4">
+        </datalist>
+        <label for="gpa"><b>GPA</b></label>
+        <input type="tel" placeholder=" GPA:4.0"id="gpa" name="gpa" required/>
+        <label for="status"><b>Status</b></label>
+        <input list="Status" placeholder="Active/Inactive" id="statuslist" name ="status" required>
+        <datalist id = "Status">
+        <option value="Active">
+        <option value="Inactive">
+        </datalist>
+        <label for="DB"><b>Department</b></label>
+        <input list="Department"  placeholder="Computer Science" name="DB" ID="DB" required>
+        <datalist id = "Department">
+        <option value="ND">
+        <option value="Computer Science">
+        <option value="Information Technology">
+        <option value="Information Systems">
+        <option value="Decision Support">
+        <option value="Artificial Intelligence">
+        </datalist>
+        <input type="submit" class="signupbtn"/>
+</div>
+</form>
+
+
+<script src="{% static 'JavaS/add.js' %}" defer></script>
+</body>
+</html>

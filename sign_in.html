@@ -1,0 +1,68 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+        <link rel="icon" type="image/x-icon" href="../static/pic/fcair-logo.png">
+    <link rel="stylesheet" href="{% static 'CSS/style.css'%}">
+  </head>
+
+  <body>
+
+    <header>
+        <img class ='logo' src="../static/pic/logo.png" alt="FCAI Logo" />
+
+        <nav class="navigation">
+          <a href = "{% url 'index' %}">Home</a>
+        </nav>
+    </header>
+
+
+
+    <div class="wrapper">
+        <div class="form-box login">
+          <h2>Login</h2>
+                {% for massege in messages %}
+                    <p>{{ massege }}</p>
+                {% endfor %}
+            <form method="post">
+
+             {% csrf_token %}
+                  <div class="input-box">
+                    <span class="icon"><ion-icon name="person"></ion-icon></span>
+                      <input type="email" name="email" required="required" id="Id" />
+                      <label>Mail</label>
+                  </div>
+
+                  <div class="input-box">
+                    <span class="icon">
+                      <ion-icon name="lock-closed"></ion-icon>
+                    </span>
+                    <input type="password" name="password" required="required" id="myPass"/>
+                    <label>Password</label>
+                    </span>
+                  </div>
+
+                  <input type="submit" value="Login" class="btnl" >
+            </form>
+                  <div class="remember-forget">
+                    <label><input type="checkbox">remember me</label>
+                        <form>
+                            <a href="{% url 'forget' %}">Forgot password?</a>
+                        </form>
+                  </div>
+                  <div class="login-register">
+                      <label>New Admin?</label>
+                      <a href="{% url 'registerForm' %}" class="register-link">Register</a>
+                  </div>
+          </div>
+    </div>
+
+      <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+      <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+  </body>
+</html>

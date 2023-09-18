@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Student Affairs Website</title>
+    <link rel="stylesheet" href="{% static 'CSS/home_page.css' %}" />
+            <link rel="icon" type="image/x-icon" href="../static/pic/fcair-logo.png">
+    <script defer src="{% static 'JavaS/home_page.js' %}"></script>
+       <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  </head>
+  <body>
+    <div class="flexBox" id="nav-placeholder">
+      <img src="../static/pic/logo.png" />
+      <h1>Student Affairs</h1>
+      <nav class="Links">
+        <a href="#about">About Us</a>
+        <a href="#services">Services and Resources</a>
+        <a href="#contact">Contact</a>
+        <a href="#student">Table of all students</a>
+        <a href="{% url 'registerForm' %}">login</a>
+      </nav>
+    </div>
+    <section id="home">
+          <div class="image">
+            <img src="../static/pic/bg2.png" />
+          </div>
+          <div class="centered"><h1>Welcome In Student Affairs Website</h1></div>
+    </section>
+
+    <section id="about">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="32"
+        height="32"
+        fill="#000000"
+        viewBox="0 0 256 256"
+      >
+        <path
+          d="M226.53,56.41l-96-32a8,8,0,0,0-5.06,0l-96,32A8,8,0,0,0,24,64v80a8,8,0,0,0,16,0V75.1L73.59,86.29a64,64,0,0,0,20.65,88.05c-18,7.06-33.56,19.83-44.94,37.29a8,8,0,1,0,13.4,8.74C77.77,197.25,101.57,184,128,184s50.23,13.25,65.3,36.37a8,8,0,0,0,13.4-8.74c-11.38-17.46-27-30.23-44.94-37.29a64,64,0,0,0,20.65-88l44.12-14.7a8,8,0,0,0,0-15.18ZM176,120A48,48,0,1,1,89.35,91.55l36.12,12a8,8,0,0,0,5.06,0l36.12-12A47.89,47.89,0,0,1,176,120ZM128,87.57,57.3,64,128,40.43,198.7,64Z"
+        ></path>
+      </svg>
+      <h2 class="student">About Student Affairs</h2>
+
+      <div class="container">
+        <div class="box1">
+          <h4>Purpose and goals</h4>
+          <ul>
+            <li>
+              Increasing student engagement and involvement in campus life
+            </li>
+            <li>Improving student retention and success</li>
+            <li>
+              Providing access to support services and resources for students
+            </li>
+            <li>Promoting campus events and activities</li>
+            <li>
+              Enhancing communication and collaboration among stakeholders
+            </li>
+          </ul>
+        </div>
+        <div class="box2">
+          <h4>Features and functionality</h4>
+          <ul>
+            <li>
+              Navigation menus to help users find information and resources
+            </li>
+            <li>Calendars of events and activities happening on campus</li>
+            <li>Forms and applications for various services and programs</li>
+            <li>Directories of campus offices and staff members</li>
+            <li>Information about campus policies and procedures</li>
+            <li>Resources for academic and personal support,</li>
+            <li>such as tutoring and counseling services</li>
+            <li>Student organization directories and resources</li>
+            <li>News and announcements about campus events and initiatives</li>
+            <li>
+              Social media integration to connect with students and stakeholders
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <div class="st">
+      <h1>table of students</h1>
+      <section id="student">
+        <div class="tbl-header">
+          <table cellpadding="0" cellspacing="0">
+            <thead>
+              <tr>
+                <th>student id</th>
+                <th>name</th>
+                <th>department</th>
+                <th>level</th>
+              </tr>
+            </thead>
+          </table>
+        </div>
+        <div class="tbl-content">
+          <table cellpadding="0" cellspacing="0">
+            <tbody >
+            {% for student in ss %}
+          <tr>
+              <td>{{student.student_id}}</td>
+              <td>{{ student.name }}</td>
+              <td>{{ student.department }}</td>
+              <td>{{ student.level }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+          </table>
+        </div>
+      </section>
+    </div>
+
+    <section id="services">
+      <div class="services">
+        <h2>Our Services</h2>
+        <ul>
+            <li>International Student Services</li>
+          <li>Academic Advising</li>
+          <li>Disability Services</li>
+          <li>Student Activities</li>
+            <li>Career Services</li>
+            <li>Health Services</li>
+        </ul>
+      </div>
+      <div class="resource">
+        <h2>Resources</h2>
+        <ul>
+             <li>Academic Calendar</li>
+            <li>Academic Advising</li>
+          <li>Student Handbook</li>
+          <li>Library Resources</li>
+          <li>Disability Services</li>
+            <li>Career Services</li>
+            <li>Campus Map</li>
+        </ul>
+      </div>
+    </section>
+
+     <section id="contact">
+      <h4>Contact us</h4>
+      <div class="grid">
+        <div class="container2">
+
+          <form  method="POST" action="{% url 'index' %}">
+              {% csrf_token %}
+
+          <label for="fname">First Name</label>
+          <input type="text" name="Fname" placeholder="First Name" required>
+
+          <label for="lname">Last Name</label>
+          <input type="text" name="Lname" placeholder="Last Name" required>
+
+
+            <label for="email">Email address</label>
+           <input type="email" name="email" placeholder="Email" required>
+
+
+          <label for="subject">Subject</label>
+          <textarea
+            name="subject"
+            placeholder="Write something.."
+            style="height: 200px"
+          ></textarea>
+
+          <div class="button">
+            <button type="submit" class="btn" onclick="openPopup()">
+              Send
+            </button>
+
+            <div class="popup" id="popup">
+              <img src="../static/pic/tick.png" />
+              <h2>Thank you for contacting us</h2>
+              <p>your message has been requsted successfuly</p>
+              <button type="button" class="btn2" onclick="closePopup()">
+                OK
+              </button>
+            </div>
+          </div>
+
+          </form>
+
+
+          </div>
+        </div>
+
+        <div class="direct-contact-container">
+          <ul class="contact-list">
+            <li class="list-item">
+              <img class="location" src="../static/pic/location.png" />
+              <span
+                ><a
+                  href="https://www.google.com/maps?q=faculty+of+computer+science+and+artificial+intelligence+cairo+university&sxsrf=APwXEdcheW-ElSKr6Zowct9p9C29DUNNcA:1681369120181&iflsig=AOEireoAAAAAZDe2MNwAkE5v7UDZZNZ16yt8A3XRaL3z&gs_lcp=Cgdnd3Mtd2l6EAMYADIFCCEQoAEyBQghEKABMgUIIRCgATIICCEQFhAeEB0yCAghEBYQHhAdMggIIRAWEB4QHTIICCEQFhAeEB0yCAghEBYQHhAdMggIIRAWEB4QHTIICCEQFhAeEB06BAgjECc6BwgAEIoFEEM6EwguEIoFELEDEIMBEMcBENEDEEM6CAgAEIoFEJECOg0IABCKBRCxAxCDARBDOgcIIxDqAhAnOgsIABCABBCxAxCDAToFCAAQgAQ6CwguEIAEEMcBEK8BOggIABCABBCxAzoOCC4QgAQQxwEQrwEQ1AI6CAgAEIAEEMsBOg4ILhCABBDHARCvARDLAToOCC4QrwEQxwEQgAQQywE6CwguEK8BEMcBEIAEOgUILhCABDoNCC4QgAQQDRDHARCvAToHCAAQgAQQDToHCC4QgAQQDToNCC4QDRCABBDHARCvAToNCC4QDRCvARDHARCABDoHCC4QDRCABDoHCAAQDRCABFAAWK2RAWC9nQFoBHAAeAGAAeMCiAH9JJIBCDAuMjMuMi4ymAEAoAEBsAEK&um=1&ie=UTF-8&sa=X&ved=2ahUKEwj_xK6TpKb-AhXtU6QEHc-1AWsQ_AUoAXoECAIQAw"
+                  >Location</a
+                ></span
+              >
+            </li>
+
+            <li class="list-item">
+              <img class="phone" src="../static/pic/phone-call.png" />
+              <span
+                ><a href="tel:1-212-555-5555" title="Give me a call"
+                  >+0227476370</a
+                ></span
+              >
+            </li>
+
+            <li class="list-item">
+              <img class="email" src="../static/pic/mail.png" />
+              <span
+                ><a href="mailto:#" title="Send me an email"
+                  >FCAI@gmail.com</a
+                ></span
+              >
+            </li>
+          </ul>
+
+          <hr />
+          <ul class="social-media-list">
+            <li class="contact-icon">
+              <a href="https://www.facebook.com/"
+                ><img class="facebook" src="../static/pic/facebook.png"
+              /></a>
+            </li>
+
+            <li class="contact-icon">
+              <a href="https://www.instagram.com/"
+                ><img class="instagram" src="../static/pic/instagram.png"
+              /></a>
+            </li>
+
+            <li class="contact-icon">
+              <a href="https://www.linkedin.com/login/ar"
+                ><img class="linkdin" src="../static/pic/linkedin.png"
+              /></a>
+            </li>
+
+            <li class="contact-icon">
+              <a href="https://twitter.com/?lang=ar"
+                ><img class="twitter" src="../static/pic/twitter.png"
+              /></a>
+            </li>
+          </ul>
+          <hr />
+          <div>&copy; 2023 Student Affairs, FCAI</div>
+        </div>
+      </div>
+    </section>
+    <footer>
+      <p>&copy; 2023 Student Affairs, FCAI</p>
+    </footer>
+  </body>
+</html>
+
+
+

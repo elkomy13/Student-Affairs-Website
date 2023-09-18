@@ -1,0 +1,47 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+            <link rel="stylesheet" type="text/css" href="{% static 'CSS/editstyle.css' %}">
+      <link rel="icon" type="image/x-icon" href="../static/pic/fcair-logo.png">
+         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="{% static '/JavaS/edit_page.js' %}"></script>
+</head>
+<body>
+ <div class="flexBox" id="flexBox">
+            <a href="{% url 'home2' %}" class="home">
+              <img src="../static/pic/logo.png">
+              <h1> Student Affairs</h1>
+            </a>
+            <nav class="Links">
+                <a href="{% url 'addStudent' %}">Add Student</a>
+            <a href="{% url 'update_status' %}">Update</a>
+            <a href="{% url 'ActiveStudents' %}">Active Students</a>
+          <a href="{% url 'assign-department' %}">Assign Department</a>
+          <a href="{% url 'search-students' %}">Search</a>
+          <a href="{% url 'logout' %}">LogOut</a>
+          </nav>
+          </div>
+
+            <div class="container">
+   <form  method="post">
+        {% csrf_token %}
+        {% for message in messages %}
+        <p style="color: red">{{message}}</p>
+        {% endfor %}
+
+        <label class="title"style="font-size: 2vw; font-weight: bold">Delete Student</label>
+          <label>Username:</label>
+          <input type="text" name="username" id="username" required/><br/><br/>
+          <label for="id">ID:</label>
+           <input type="tel" name="id" id="id" required/><br /><br />
+
+        <button type="submit" name="delete" id="delete-btn">Delete</button>
+
+          <br /><br />
+    </form>
+ </div>
+</body>
+</html>

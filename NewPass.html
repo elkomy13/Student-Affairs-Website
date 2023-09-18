@@ -1,0 +1,50 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>New Password</title>
+  <link rel="stylesheet" href="{% static 'CSS/New.css' %}">
+      <link rel="icon" type="image/x-icon" href="../static/pic/fcair-logo.png">
+</head>
+<body>
+  <div class="flexBox" id="flexBox">
+    <img src="../static/pic/logo.png">
+    <h1> Student Affairs</h1>
+    <nav class="Links">
+      <a href="{% url 'index' %}">Home</a>
+  </nav>    
+  </div>
+
+
+  <div class="Container">
+
+  <div class = "ALL">
+
+    <form method="post">
+
+        {% csrf_token %}
+    <img src="../static/pic/padlock.png" alt="locker">
+     <label for="newpass">Enter New Password:</label>
+     <input type="password" name="password" id="newpass" placeholder="Password" required /><br /><br />
+     <label for="confirmpass">Confirm New Password:</label>
+     <input
+       type="password"
+       name="verifyPassword"
+       id="confirmpass"
+       placeholder="Confirm Password"
+       required>
+    <br>
+    <input type="submit" value="Change Password" class="Submitbtn"/>
+   </form>
+                  {% for massage in messages %}
+        <p style="color: red">{{ massage }}</p>
+        {% endfor %}
+  </div>
+</div>
+  <footer><p>&copy; 2023 Student Affairs, FCAI</p></footer>
+  <script src="New.js"></script>
+</body>
+</html>
+
+

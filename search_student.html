@@ -1,0 +1,62 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Search for Active Students</title>
+    <link rel="stylesheet" href="../static/CSS/search.css">
+      <link rel="icon" type="image/x-icon" href="../static/pic/fcair-logo.png">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" src="{% static 'JavaS/search.js' %}" defer></script>
+  </head>
+  <body class="container">
+    <div class="flexBox" id="flexBox">
+      <a href="{% url 'index2' %}" class="home">
+        <img src="../static/pic/logo.png">
+        <h1> Student Affairs</h1>
+      </a>
+      <nav class="Links">
+            <a href="{% url 'addStudent' %}">Add Student</a>
+        <a href="{% url 'edit_page_view' %}">Update</a>
+        <a href="{% url 'ActiveStudents' %}">Active Students</a>
+      <a href="{% url 'assign-department' %}">Assign Department</a>
+      <a href="{% url 'search-students' %}">Search</a>
+      <a href="{% url 'logout' %}">LogOut</a>
+      </nav>
+    </div>
+
+    <h1 class="header">
+      <span class="animated-header">Search for Active Students</span>
+      <div class="content">
+        <form class="search" id="searchBar" action="{% url 'search-students' %}" method="post"> <!--mockup untill we add database-->
+          {% csrf_token %}
+          <input type="text" id="search" name="student_name" placeholder="Search by name"/>
+          <button type="submit" id="submit-button">
+            <img src="../static/pic/search-interface-symbol.png" alt="Search button">
+          </button>
+        </form>
+      </div>
+    </h1>
+    <div id="results-content">
+      <table id="results">
+        <thead>
+          <tr>
+              <th>ID</th>
+              <th>Name</th>
+              <th>GPA</th>
+              <th>Gender</th>
+              <th>Level&nbsp;</th>
+              <th>Department</th>
+              <th>Email</th>
+              <th>Mobile Number</th>
+          </tr>
+        </thead>
+        <tbody id="data"></tbody>
+      </table>
+    </div>
+    <footer>
+      <p>&copy; 2023 Student Affairs, FCAI</p>
+    </footer>
+  </body>
+</html>

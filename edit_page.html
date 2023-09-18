@@ -1,0 +1,85 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Update Student Information</title>
+        <link rel="stylesheet" type="text/css" href="{% static 'CSS/editstyle.css' %}">
+         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+          <link rel="icon" type="image/x-icon" href="../static/pic/fcair-logo.png">
+        <script src="{% static 'JavaS/edit_page.js' %}"></script>
+    </head>
+  <body>
+      <div class="flexBox" id="flexBox">
+            <a href="{% url 'home2' %}" class="home">
+              <img src="../static/pic/logo.png">
+              <h1> Student Affairs</h1>
+            </a>
+            <nav class="Links">
+                <a href="{% url 'addStudent' %}">Add Student</a>
+            <a href="{% url 'update_status' %}">Update</a>
+            <a href="{% url 'ActiveStudents' %}">Active Students</a>
+          <a href="{% url 'assign-department' %}">Assign Department</a>
+          <a href="{% url 'search-students' %}">Search</a>
+          <a href="{% url 'logout' %}">LogOut</a>
+          </nav>
+          </div>
+
+            <div class="container">
+
+
+
+    <form method="post">
+        {% csrf_token %}
+        {% for message in messages %}
+        <p id="message-container" style="color: red">{{message}}</p>
+        {% endfor %}
+
+        <label class="title" style="font-size: 2vw; font-weight: bold">Update Student Infromation</label>
+          <label>Username:</label>
+          <input type="text" name="username" id="username" required/><br/><br/>
+          <label for="id">ID:</label>
+          <input type="tel" name="id" id="id" required/><br /><br />
+          <label for="email"> Email:</label>
+          <input type="email" name="email" id="email" required/><br/><br/>
+          <label for="phone">Phone number:</label>
+          <input type="tel" name="phone" id="phone" required/>
+          <br/><br/>
+
+          <label for="date">Date of birth:</label>
+          <input type="date" name="date" id="date" required/><br/><br/>
+
+
+          <label for="gpa">GPA:</label>
+          <input type="tel" name="gpa" id="gpa" required/><br /><br />
+
+          <label for="status" >Status:</label>
+          <label class="switch">
+            <input class="active" type="checkbox" name="status" checked>
+            <span class="slider"></span>
+          </label>
+
+          <label for="department">Department:</label>
+          <input
+            type="text"
+            id="department"
+            name="department"
+            disabled
+          /><br /><br />
+
+          <button type="submit"  id="update-btn" >Update</button>
+
+
+          <br /><br />
+
+          <h2>
+          <a id="assign" href="{% url 'delete' %}">Delete student</a>
+        </h2>
+    </form>
+    </div>
+    <footer>
+      <p>&copy; 2023 Student Affairs, FCAI</p>
+    </footer>
+  </body>
+</html>
+
