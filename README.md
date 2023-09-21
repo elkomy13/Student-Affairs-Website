@@ -10,4 +10,13 @@ This project is exclusively designed for administrative use and is not accessibl
 345)
 ![WhatsApp Image 2023-09-21 at 1 28 45 PM](https://github.com/elkomy13/StudentAffairsWebsite.github.io/assets/97259226/09150c9e-53ee-4a4d-8225-cb83a46a8625)
 
+
+# Registration
+
+![WhatsApp Image 2023-09-21 at 1 36 44 PM](https://github.com/elkomy13/StudentAffairsWebsite.github.io/assets/97259226/e3b71b67-1eab-4243-8e76-90e2ae4ebd03)
+
+# Login
+
+
+
 # home page 2
